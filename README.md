@@ -105,8 +105,7 @@ You will also find in the utilities folder the file called `jsonl-validator.py`.
 python3 ./utils/jsonl-validator.py result.jsonl
 ```
 ## Optimization
-I tried to optimize the library by using threads. It’s just a point of concept and as of now it doesn't reduce the execution time. The logic behind this optimization is to divide the CSV file by the number of threads available. So each thread is affected a small portion of the CSV file. For example, if I have 4 threads and 400 lines in the CSV then each thread will convert 100 lines. The threaded library was compiled with
-The threaded library was compiled with : 
+I tried to optimize the library by using threads. It’s just a point of concept and as of now it doesn't reduce the execution time. The logic behind this optimization is to divide the CSV file by the number of threads available. So each thread is affected a small portion of the CSV file. For example, if I have 4 threads and 400 lines in the CSV then each thread will convert 100 lines. The threaded library was compiled with : 
 ```
 g++ converter_thread.cpp -o challenge-cpp-thread -lpthread
 ```

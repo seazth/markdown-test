@@ -1,7 +1,7 @@
 # ANSSI Challenge
 ## Description
-The project goal was to create a program to convert a CSV file to a JSONLines file.
-I have done 2 different implementations :
+The project goal is to create a program to convert a CSV file to a JSONLines file.
+I have created 2 different implementations :
 * Python version : In this version python import and use a shared library written in C++.
 * All-in-C++ : This version is written in full C++.
 
@@ -29,41 +29,42 @@ The main file that contains all the logic of the project can be found in `./lib/
 ```
 .
 ├── bin
-│   ├── challenge
-│   ├── challenge-cpp
-│   ├── challenge-cpp-thread
-│   └── testConverter
+│   ├── challenge
+│   ├── challenge-cpp
+│   └── challenge-cpp-thread
 ├── csv
-│   ├── mini_NTFSInfo.csv
-│   ├── NTFSInfo_00000000_DiskInterface_0xc2e23c53e23c4e43_.csv
-│   └── NTFSInfo.7z
+│   ├── mini_NTFSInfo.csv
+│   ├── NTFSInfo_00000000_DiskInterface_0xc2e23c53e23c4e43_.csv
+│   └── NTFSInfo.7z
 ├── lib
-│   ├── converter.h
-│   ├── json.hpp
-│   ├── libconverter.so
-│   ├── sharedConverter.cpp
-│   ├── sharedConverter.o
-│   └── utils.h
+│   ├── converter.h
+│   ├── json.hpp
+│   ├── libconverter.so
+│   ├── sharedConverter.cpp
+│   ├── sharedConverter.o
+│   └── utils.h
 ├── README.md
 ├── src
-│   ├── converter_thread.cpp
-│   ├── main.cpp
-│   └── main.py
+│   ├── converter_thread.cpp
+│   ├── main.cpp
+│   └── main.py
 ├── tests
-│   ├── simpleConversionOfOneLine.csv
-│   ├── testConverter.cpp
-│   ├── typeConversion.csv
-│   └── wrongFormat.csv
+│   ├── simpleConversionOfOneLine.csv
+│   ├── testConverter
+│   ├── testConverter.cpp
+│   ├── typeConversion.csv
+│   └── wrongFormat.csv
 └── utils
     └── jsonl_validator.py
+
 ```
 
 
 ## Installation and requirements
 
-* Development and testing were done on Ubuntu LTS 20.04
+* Development and testing with Ubuntu LTS 20.04
 * C++ files were compiled with gcc version 9.3.0
-* The version of python used was 3.8.5
+* The python's version used is 3.8.5
 
 In order to run the unit tests you need to manually install CppUnit :
 ```
@@ -81,7 +82,7 @@ For the python version, you just need to compile the shared library :
 g++ -c -fPIC sharedConverter.cpp -o sharedConverter.o
 g++ -shared -Wl,-soname,libconverter.so -o libconverter.so  sharedConverter.o
 ```
-There is also unit tests for the library that you can compile with this command :
+There is also unit tests for the library that you can compile with this command from the `./tests` directory :
 ```
 g++ -o testConverter ../lib/converter.h testConverter.cpp -lcppunit
 ```
@@ -104,18 +105,18 @@ You will also find in the utilities folder the file called `jsonl-validator.py`.
 python3 ./utils/jsonl-validator.py result.jsonl
 ```
 ## Optimization
-I tried to optimize the library by using threads. It serves as a point of concept and as of now it doesn't reduce the execution time. The logic behind this optimization is too divide the CSV file by the number of threads available. So each threads is affected a small portion of the CSV file. For example, if I have 4 threads and 400 lines in the CSV then each threads will convert 100 lines.
+I tried to optimize the library by using threads. It’s just a point of concept and as of now it doesn't reduce the execution time. The logic behind this optimization is to divide the CSV file by the number of threads available. So each thread is affected a small portion of the CSV file. For example, if I have 4 threads and 400 lines in the CSV then each thread will convert 100 lines. The threaded library was compiled with
 The threaded library was compiled with : 
 ```
 g++ converter_thread.cpp -o challenge-cpp-thread -lpthread
 ```
-For reference there is a benchmark with the execution time for the non-threaded C++ version :
+For reference here is a benchmark with the execution time for the non-threaded C++ version :
 ```
 real 	0m8,472s
 user 	0m4,967s
 sys  	0m1,472s
 ```
-And for the threaded version :
+And the threaded version :
 ```
 real	0m9,590s
 user	0m11,974s

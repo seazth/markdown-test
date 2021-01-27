@@ -20,9 +20,8 @@ The main file that contains all the logic of the project can be found in `./lib/
     <li><a href="#compilation">Compilation</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#utilities-and-tests">Utilities and tests</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#optimization">Optimization</a></li>
-    <li><a href="#improvements">Improvements</a></li>
+
   </ol>
 </details>
 

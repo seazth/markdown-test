@@ -96,9 +96,9 @@ To use the all-in-C++, you need to execute this command :
 ./bin/challenge-cpp <path-to-csv> > result.jsonl
 ```
 ## Utilities and tests
-You can launch the suite test for the libray `converter.h` with the following command.
+You can launch the suite test for the libray `converter.h` with the following command from the `./tests` directory : 
 ```
-./tests/testConverter
+./testConverter
 ```
 You will also find in the utilities folder the file called `jsonl-validator.py`. It simply check that a JSONLines file is correctly formatted according to the recommendations found at https://jsonlines.org/. To use it you need to provide a JSONLines file and It will stop whenever a line is not well formatted and log it :
 ```
